@@ -17,19 +17,29 @@
     </footer>
 
     <script>
+        // Defines an asynchronous function named fetchJoke
         async function fetchJoke() {
+            // Sends a GET request to the Chuck Norris Jokes API.
             const response = await fetch('https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random', {
+                // Specifies the HTTP method as GET.
                 method: 'GET',
+                // Defines the headers for the request.
                 headers: {
+                    // API key for authentication.
                     'X-Rapidapi-Key': '1d11984795msh9bdd4121e359e0fp1f260ejsnec436b6addc3',
+                    // The host of the API.
                     'X-Rapidapi-Host': 'matchilling-chuck-norris-jokes-v1.p.rapidapi.com',
+                    // Specifies that the response should be in JSON format.
                     'Accept': 'application/json'
                 }
             });
+            // Parses the JSON response from the API.
             const data = await response.json();
-            document.getElementById('joke').innerText = data.value;
+            // Updates the content of the element with ID 'joke' with the joke text.
+            // Joke takes three seconds to update.
+            setTimeout(() => {document.getElementById('joke').innerText = data.value;}, 3000);
         }
-
+        // Calls the fetchJoke function to execute it.
         fetchJoke();
     </script>
 </body>
