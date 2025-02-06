@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Basic Website</title>
+    <style>
+        #image-container {
+            width: 300px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+        }
+        #cat-image {
+            width: 300px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -11,7 +21,8 @@
     </header>
     <main>
         <p id="joke">Loading joke...</p>
-        <img id="image-container" src="" alt="Neko Image" style="width: 500px; height: 500px">
+        <img id="image-container" src="" alt="Neko Image">
+        <br><br>
         <button onclick="fetchCatImage()">Get a Cat Image</button>
         <br><br>
         <img id="cat-image" src="" alt="Cat Image">
@@ -19,7 +30,6 @@
     <footer>
         <p>&copy; 2025 My Website</p>
     </footer>
-
     <script>
         // Defines an asynchronous function named fetchJoke
         async function fetchJoke() {
@@ -41,8 +51,9 @@
             const data = await response.json();
             // Updates the content of the element with ID 'joke' with the joke text.
             // Joke takes three seconds to update.
-            setTimeout(() => {document.getElementById('joke').innerText = data.value;}, 3000);
+            setTimeout(() => { document.getElementById('joke').innerText = data.value; }, 3000);
         }
+
         // Calls the fetchJoke function to execute it.
         fetchJoke();
 
@@ -52,6 +63,10 @@
             const data = await response.json();
             const imageUrl = data.results[0].url;
             document.getElementById('image-container').src = imageUrl;
+        }
+
+        // Call the fetchNekoImage function to execute it
+        fetchNekoImage();
 
         // New function to fetch and display the cat image
         async function fetchCatImage() {
@@ -64,8 +79,6 @@
                 console.error('Error fetching cat image:', error);
             }
         }
-    }
-    fetchNekoImage();
-  </script>
+    </script>
 </body>
 </html>
